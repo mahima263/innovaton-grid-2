@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Areas & SDGs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #b04b34, #d2694a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #5a5a5a;
+            line-height: 1.6;
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .impact-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .impact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            padding: 25px 25px 15px;
+            background: linear-gradient(135deg, #b04b34, #d2694a);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+        
+        .card-header h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+        
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-content p {
+            color: #5a5a5a;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+        
+        .sdg-section {
+            margin-top: 10px;
+        }
+        
+        .sdg-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .sdg-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .sdg-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #b04b34;
+        }
+        
+        .sdg-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .sdg-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #b04b34;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(176, 75, 52, 0.3);
+        }
+        
+        .sdg-name {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .sdg-description {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 3px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 25px;
+            color: #5a5a5a;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(176, 75, 52, 0.2);
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #b04b34;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        @media (max-width: 768px) {
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Impact Areas & Sustainable Development Goals</h1>
+            <p class="subtitle">Exploring how different impact areas align with the United Nations SDGs to drive positive change and sustainable development worldwide</p>
+        </header>
+        
+        <div class="impact-grid">
+            <!-- Health Care -->
+            <div class="impact-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Health Care</h3>
+                </div>
+                <div class="card-content">
+                    <p>Ensuring healthy lives and promoting well-being for all at all ages through accessible healthcare services, disease prevention, and health education.</p>
+                    <div class="sdg-section">
+                        <h4><i class="fas fa-bullseye"></i> Related SDGs</h4>
+                        <div class="sdg-list">
+                            <div class="sdg-item">
+                                <div class="sdg-number">3</div>
+                                <div>
+                                    <div class="sdg-name">Good Health & Well-being</div>
+                                    <div class="sdg-description">Ensure healthy lives and promote well-being</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Environment & Sustainability -->
+            <div class="impact-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Environment & Sustainability</h3>
+                </div>
+                <div class="card-content">
+                    <p>Protecting our planet through sustainable management of water, energy, urban development, climate action, and preservation of terrestrial ecosystems.</p>
+                    <div class="sdg-section">
+                        <h4><i class="fas fa-bullseye"></i> Related SDGs</h4>
+                        <div class="sdg-list">
+                            <div class="sdg-item">
+                                <div class="sdg-number">6</div>
+                                <div>
+                                    <div class="sdg-name">Clean Water & Sanitation</div>
+                                    <div class="sdg-description">Ensure availability of water for all</div>
+                                </div>
+                            </div>
+                            <div class="sdg-item">
+                                <div class="sdg-number">7</div>
+                                <div>
+                                    <div class="sdg-name">Affordable & Clean Energy</div>
+                                    <div class="sdg-description">Ensure access to affordable energy</div>
+                                </div>
+                            </div>
+                            <div class="sdg-item">
+                                <div class="sdg-number">11</div>
+                                <div>
+                                    <div class="sdg-name">Sustainable Cities</div>
+                                    <div class="sdg-description">Make cities inclusive and sustainable</div>
+                                </div>
+                            </div>
+                            <div class="sdg-item">
+                                <div class="sdg-number">13</div>
+                                <div>
+                                    <div class="sdg-name">Climate Action</div>
+                                    <div class="sdg-description">Take urgent action against climate change</div>
+                                </div>
+                            </div>
+                            <div class="sdg-item">
+                                <div class="sdg-number">15</div>
+                                <div>
+                                    <div class="sdg-name">Life on Land</div>
+                                    <div class="sdg-description">Protect and restore terrestrial ecosystems</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Education & Skill Development -->
+            <div class="impact-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Education & Skill Development</h3>
+                </div>
+                <div class="card-content">
+                    <p>Ensuring inclusive and equitable quality education and promoting lifelong learning opportunities for all while reducing inequalities.</p>
+                    <div class="sdg-section">
+                        <h4><i class="fas fa-bullseye"></i> Related SDGs</h4>
+                        <div class="sdg-list">
+                            <div class="sdg-item">
+                                <div class="sdg-number">4</div>
+                                <div>
+                                    <div class="sdg-name">Quality Education</div>
+                                    <div class="sdg-description">Ensure inclusive and equitable education</div>
+                                </div>
+                            </div>
+                            <div class="sdg-item">
+                                <div class="sdg-number">10</div>
+                                <div>
+                                    <div class="sdg-name">Reduced Inequalities</div>
+                                    <div class="sdg-description">Reduce inequality within and among countries</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Research & Innovation -->
+            <div class="impact-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Research & Innovation</h3>
+                </div>
+                <div class="card-content">
+                    <p>Driving progress through research and innovation across health, environment, sustainability, and conservation goals for transformative solutions.</p>
+                    <div class="sdg-section">
+                        <h4><i class="fas fa-bullseye"></i> Related SDGs</h4>
+                        <div class="sdg-list">
+                            <div class="sdg-item">
+                                <div class="sdg-number">3</div>
+                                <div>
+                                    <div class="sdg-name">Good Health & Well-being</div>
+                                    <div class="sdg-description">Ensure healthy lives and promote well-being</div>
+                                </div>
+                            </div>
+                            <div class="sdg-item">
+                                <div class="sdg-number">6</div>
+                                <div>
+                                    <div class="sdg-name">Clean Water & Sanitation</div>
+                                    <div class="sdg-description">Ensure availability of water for all</div>
+                                </div>
+                            </div>
+                            <div class="sdg-item">
+                                <div class="sdg-number">7</div>
+                                <div>
+                                    <div class="sdg-name">Affordable & Clean Energy</div>
+                                    <div class="sdg-description">Ensure access to affordable energy</div>
+                                </div>
+                            </div>
+                            <div class="sdg-item">
+                                <div class="sdg-number">11</div>
+                                <div>
+                                    <div class="sdg-name">Sustainable Cities</div>
+                                    <div class="sdg-description">Make cities inclusive and sustainable</div>
+                                </div>
+                            </div>
+                            <div class="sdg-item">
+                                <div class="sdg-number">13</div>
+                                <div>
+                                    <div class="sdg-name">Climate Action</div>
+                                    <div class="sdg-description">Take urgent action against climate change</div>
+                                </div>
+                            </div>
+                            <div class="sdg-item">
+                                <div class="sdg-number">14</div>
+                                <div>
+                                    <div class="sdg-name">Life Below Water</div>
+                                    <div class="sdg-description">Conserve marine resources</div>
+                                </div>
+                            </div>
+                            <div class="sdg-item">
+                                <div class="sdg-number">15</div>
+                                <div>
+                                    <div class="sdg-name">Life on Land</div>
+                                    <div class="sdg-description">Protect and restore terrestrial ecosystems</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Community Welfare -->
+            <div class="impact-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Community Welfare</h3>
+                </div>
+                <div class="card-content">
+                    <p>Promoting quality education and reduced inequalities within communities to ensure no one is left behind in the development process.</p>
+                    <div class="sdg-section">
+                        <h4><i class="fas fa-bullseye"></i> Related SDGs</h4>
+                        <div class="sdg-list">
+                            <div class="sdg-item">
+                                <div class="sdg-number">4</div>
+                                <div>
+                                    <div class="sdg-name">Quality Education</div>
+                                    <div class="sdg-description">Ensure inclusive and equitable education</div>
+                                </div>
+                            </div>
+                            <div class="sdg-item">
+                                <div class="sdg-number">10</div>
+                                <div>
+                                    <div class="sdg-name">Reduced Inequalities</div>
+                                    <div class="sdg-description">Reduce inequality within and among countries</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Infrastructure -->
+            <div class="impact-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Infrastructure</h3>
+                </div>
+                <div class="card-content">
+                    <p>Building resilient infrastructure, promoting inclusive and sustainable industrialization, and fostering innovation for economic development.</p>
+                    <div class="sdg-section">
+                        <h4><i class="fas fa-bullseye"></i> Related SDGs</h4>
+                        <div class="sdg-list">
+                            <div class="sdg-item">
+                                <div class="sdg-number">9</div>
+                                <div>
+                                    <div class="sdg-name">Industry & Infrastructure</div>
+                                    <div class="sdg-description">Build resilient infrastructure and innovation</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Impact Areas & SDGs Visualization &copy; 2023 | Aligned with United Nations Sustainable Development Goals</p>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Impact Areas</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">11</div>
+                    <div class="stat-label">SDGs Covered</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">17</div>
+                    <div class="stat-label">Total SDGs</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
